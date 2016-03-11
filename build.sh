@@ -140,21 +140,17 @@ echo "*** Building mp3lame ***"
 cd $BUILD_DIR/lame*
 ./configure --prefix=$TARGET_DIR --enable-nasm --disable-shared
 make -j $jval
-make install
 
 echo "*** Building opus ***"
 cd $BUILD_DIR/opus*
 ./configure --prefix=$TARGET_DIR --disable-shared
 make -j $jval
-make install
 
 echo "*** Building libvpx ***"
 cd $BUILD_DIR/libvpx*
 PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR --disable-examples --disable-unit-tests
 PATH="$BIN_DIR:$PATH" make -j $jval
 make install
-
-
 
 # FFMpeg
 echo "*** Building FFmpeg ***"
