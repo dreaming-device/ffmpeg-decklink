@@ -152,6 +152,9 @@ PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR --disable-examples --disa
 PATH="$BIN_DIR:$PATH" make -j $jval
 make install
 
+echo "*** Building libass ***"
+cd $BUILD_DIR/libass*
+
 # FFMpeg
 echo "*** Building FFmpeg ***"
 cd $BUILD_DIR/FFmpeg*
