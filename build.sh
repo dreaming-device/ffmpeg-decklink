@@ -99,16 +99,27 @@ download \
 	"https://github.com/webmproject/libvpx/archive/"
 
 download \
-	"master.zip" \
+	"faac-1.28.tar.bz2" \
 	"" \
-	"" \
-	"https://github.com/libass/libass/archive/"
+	"c5dde68840cefe46532089c9392d1df0" \
+	"http://downloads.sourceforge.net/faac/"
+
+#download \
+#	"master.zip" \
+#	"" \
+#	"" \
+#	"https://github.com/libass/libass/archive/"
 
 download \
 	"2.8.tar.gz" \
 	"ffmpeg2.8.tar.gz" \
 	"cb4f1da8ccd91eda618a4d4cd95ca36e" \
 	"https://github.com/FFmpeg/FFmpeg/archive/release"
+
+cp $ENV_ROOT/DeckLinkAPI.h $BUILD_DIR/FFmpeg-release-2.8/libavdevice/DeckLinkAPI.h
+cp $ENV_ROOT/DeckLinkAPIVersion.h $BUILD_DIR/FFmpeg-release-2.8/libavdevice/DeckLinkAPIVersion.h
+cp $ENV_ROOT/DeckLinkAPI.h $TARGET_DIR/include/DeckLinkAPI.h
+cp $ENV_ROOT/DeckLinkAPIVersion.h $TARGET_DIR/include/DeckLinkAPIVersion.h
 
 echo "*** Building yasm ***"
 cd $BUILD_DIR/yasm*
@@ -152,8 +163,9 @@ PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR --disable-examples --disa
 PATH="$BIN_DIR:$PATH" make -j $jval
 make install
 
-echo "*** Building libass ***"
-cd $BUILD_DIR/libass*
+
+#echo "*** Building libass ***"
+#cd $BUILD_DIR/libass*
 
 # FFMpeg
 echo "*** Building FFmpeg ***"
@@ -163,16 +175,21 @@ PKG_CONFIG_PATH="$TARGET_DIR/lib/pkgconfig" ./configure \
   --prefix="$TARGET_DIR" \
   --pkg-config-flags="--static" \
   --extra-cflags="-I$TARGET_DIR/include" \
+  --extra-cflags="-I$ENV_ROOT" \
   --extra-ldflags="-L$TARGET_DIR/lib" \
   --bindir="$BIN_DIR" \
   --enable-static \
+  --enable-decklink \
   --enable-gpl \
-  --enable-libass \
   --enable-libfdk-aac \
-  --enable-libfaac \
   --enable-libx264 \
-  --enable-nonfree
+  --enable-nonfree \
+  --disable-ffplay \
+  --disable-ffprobe \
+  --disable-ffserver
 PATH="$BIN_DIR:$PATH" make -j $jval
 make install -j $jval
 make distclean
 hash -r
+
+#  --enable-libass \
