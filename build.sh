@@ -111,15 +111,15 @@ download \
 #	"https://github.com/libass/libass/archive/"
 
 download \
-	"2.8.tar.gz" \
-	"ffmpeg2.8.tar.gz" \
-	"cb4f1da8ccd91eda618a4d4cd95ca36e" \
-	"https://github.com/FFmpeg/FFmpeg/archive/release"
+	"ffmpeg-3.0.tar.gz" \
+	"" \
+	"" \
+	"https://github.com/FFmpeg/FFmpeg/releases/download/n3.0"
 
-cp $ENV_ROOT/DeckLinkAPI.h $BUILD_DIR/FFmpeg-release-2.8/libavdevice/DeckLinkAPI.h
-cp $ENV_ROOT/DeckLinkAPIVersion.h $BUILD_DIR/FFmpeg-release-2.8/libavdevice/DeckLinkAPIVersion.h
-cp $ENV_ROOT/DeckLinkAPI.h $TARGET_DIR/include/DeckLinkAPI.h
-cp $ENV_ROOT/DeckLinkAPIVersion.h $TARGET_DIR/include/DeckLinkAPIVersion.h
+#cp $ENV_ROOT/DeckLinkAPI.h $BUILD_DIR/FFmpeg-release-2.8/libavdevice/DeckLinkAPI.h
+#cp $ENV_ROOT/DeckLinkAPIVersion.h $BUILD_DIR/FFmpeg-release-2.8/libavdevice/DeckLinkAPIVersion.h
+#cp $ENV_ROOT/DeckLinkAPI.h $TARGET_DIR/include/DeckLinkAPI.h
+#cp $ENV_ROOT/DeckLinkAPIVersion.h $TARGET_DIR/include/DeckLinkAPIVersion.h
 
 echo "*** Building yasm ***"
 cd $BUILD_DIR/yasm*
@@ -169,7 +169,7 @@ make install
 
 # FFMpeg
 echo "*** Building FFmpeg ***"
-cd $BUILD_DIR/FFmpeg*
+cd $BUILD_DIR/ffmpeg*
 PATH="$BIN_DIR:$PATH" \
 PKG_CONFIG_PATH="$TARGET_DIR/lib/pkgconfig" ./configure \
   --prefix="$TARGET_DIR" \
