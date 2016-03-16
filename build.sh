@@ -174,10 +174,12 @@ PATH="$BIN_DIR:$PATH" \
 PKG_CONFIG_PATH="$TARGET_DIR/lib/pkgconfig" ./configure \
   --prefix="$TARGET_DIR" \
   --pkg-config-flags="--static" \
-  --extra-cflags="-I$TARGET_DIR/include" \
-  --extra-cflags="-I$ENV_ROOT" \
+  --extra-cflags="-std=c11 -stdlib=libc++ -I$TARGET_DIR/include -I/Users/kreld/bm" \
+  --extra-cxxflags="-std=c++11 -stdlib=libc++11" \
   --extra-ldflags="-L$TARGET_DIR/lib" \
   --bindir="$BIN_DIR" \
+  --cc=clang \
+  --cxx=clang++ \
   --enable-static \
   --enable-decklink \
   --enable-gpl \
@@ -188,6 +190,8 @@ PKG_CONFIG_PATH="$TARGET_DIR/lib/pkgconfig" ./configure \
   --disable-ffprobe \
   --disable-ffserver
 PATH="$BIN_DIR:$PATH" make -j $jval
+CXXFLAGS+="-std=c++11"
+CFLAGS+="-std=c11"
 make install -j $jval
 make distclean
 hash -r
