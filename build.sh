@@ -174,8 +174,7 @@ PATH="$BIN_DIR:$PATH" \
 PKG_CONFIG_PATH="$TARGET_DIR/lib/pkgconfig" ./configure \
   --prefix="$TARGET_DIR" \
   --pkg-config-flags="--static" \
-  --extra-cflags="-std=c11 -stdlib=libc++ -I$TARGET_DIR/include -I/Users/kreld/bm" \
-  --extra-cxxflags="-std=c++11 -stdlib=libc++11" \
+  --extra-cflags="-I$TARGET_DIR/include -I/Users/kreld/bm -std=c11" \
   --extra-ldflags="-L$TARGET_DIR/lib" \
   --bindir="$BIN_DIR" \
   --cc=clang \
@@ -189,9 +188,9 @@ PKG_CONFIG_PATH="$TARGET_DIR/lib/pkgconfig" ./configure \
   --disable-ffplay \
   --disable-ffprobe \
   --disable-ffserver
-PATH="$BIN_DIR:$PATH" make -j $jval
-CXXFLAGS+="-std=c++11"
-CFLAGS+="-std=c11"
+# Stupid hack to override ffmpeg's too-automatic build process
+sed -i '' 's/CXXFLAGS   += $(CPPFLAGS) $(CFLAGS)/CXXFLAGS   += $(CPPFLAGS) $(CFLAGS) -std=c++03/g' $BUILD_DIR/ffmpeg-3.0/common.mak
+PATH="$BIN_DIR:$PATH" make VERBOSE=1 -j $jval
 make install -j $jval
 make distclean
 hash -r
