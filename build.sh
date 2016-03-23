@@ -164,9 +164,6 @@ PATH="$BIN_DIR:$PATH" make -j $jval
 make install
 
 
-#echo "*** Building libass ***"
-#cd $BUILD_DIR/libass*
-
 # FFMpeg
 echo "*** Building FFmpeg ***"
 cd $BUILD_DIR/ffmpeg*
@@ -194,5 +191,3 @@ PATH="$BIN_DIR:$PATH" make VERBOSE=1 -j $jval
 make install -j $jval
 make distclean
 hash -r
-
-#  --enable-libass \
