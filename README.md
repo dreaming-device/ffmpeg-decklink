@@ -9,8 +9,6 @@ run ./build.sh, wait and you should get the ffmpeg binary in target/bin
 Build dependencies
 ------------------
 
-    # Debian & Ubuntu
-    $ apt-get install build-essential curl tar
 
 	# OS X
 	# install XCode, it can be found at http://developer.apple.com/
@@ -18,7 +16,7 @@ Build dependencies
 Build & "install"
 -----------------
 
-    $ ./build.sh or build-ubuntu.sh
+    $ ./build.sh
     # ... wait ...
     # binaries can be found in ./target/bin/
 
@@ -45,10 +43,6 @@ Remaining links
 
 I'm not sure it's a good idea to statically link those, but it probably
 means the executable won't work across distributions or even across releases.
-
-    # On Ubuntu 10.04:
-    $ ldd ./target/bin/ffmpeg 
-	not a dynamic executable
 
     # on OSX 10.6.4:
     $ otool -L ffmpeg 
