@@ -1,8 +1,11 @@
+FFmpeg w/ decklink
+==================
+
 Static build of `ffmpeg` with h264 and decklink
 
 
-Build & "install"
------------------
+Build
+-----
 
     $ ./build.sh
     # binaries can be found in ./target/bin/
