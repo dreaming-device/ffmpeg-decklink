@@ -1,7 +1,5 @@
-FFmpeg static build
-===================
-
-*STATUS*: community-supported
+FFmpeg static build, linked against decklink
+============================================
 
 Three scripts to make a static build of ffmpeg with all the latest codecs (webm + h264).
 
@@ -16,8 +14,6 @@ Build dependencies
 
 	# OS X
 	# install XCode, it can be found at http://developer.apple.com/
-	# (apple login needed)
-	# <FIXME???>
 
 Build & "install"
 -----------------
@@ -59,28 +55,4 @@ means the executable won't work across distributions or even across releases.
 	ffmpeg:
 		/usr/lib/libSystem.B.dylib (compatibility version 1.0.0, current version 125.2.0)
 
-Community, bugs and reports
----------------------------
-
-This repository is community-supported. If you make a useful PR then you will
-be added as a contributor to the repo. All changes are assumed to be licensed
-under the same license as the project (ISC).
-
-As a contributor you can do whatever you want. Help maintain the scripts,
-upgrade dependencies and merge other people's PRs. Just be responsible and
-make an issue if you want to introduce bigger changes so we can discuss them
-beforehand.
- 
-### TODO
-
- * Add some tests to check that video output is correctly generated
-   this would help upgrading the package without too much work
- * OSX's xvidcore does not detect yasm correctly
- * remove remaining libs (?)
-
-License
--------
-
-This project is licensed under the ISC. See the [LICENSE](LICENSE) file for
-the legalities.
 

@@ -92,11 +92,11 @@ download \
 	"c5a8cf7c0b066759542bc4ca46817ac6" \
 	"http://downloads.xiph.org/releases/opus"
 
-download \
-	"v1.5.0.tar.gz" \
-	"" \
-	"0c662bc7525afe281badb3175140d35c" \
-	"https://github.com/webmproject/libvpx/archive/"
+#download \
+#	"v1.5.0.tar.gz" \
+#	"" \
+#	"0c662bc7525afe281badb3175140d35c" \
+#	"https://github.com/webmproject/libvpx/archive/"
 
 download \
 	"faac-1.28.tar.bz2" \
@@ -157,11 +157,11 @@ cd $BUILD_DIR/opus*
 ./configure --prefix=$TARGET_DIR --disable-shared
 make -j $jval
 
-echo "*** Building libvpx ***"
-cd $BUILD_DIR/libvpx*
-PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR --disable-examples --disable-unit-tests
-PATH="$BIN_DIR:$PATH" make -j $jval
-make install
+#echo "*** Building libvpx ***"
+#cd $BUILD_DIR/libvpx*
+#PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR --disable-examples --disable-unit-tests
+#PATH="$BIN_DIR:$PATH" make -j $jval
+#make install
 
 
 # FFMpeg
@@ -171,7 +171,7 @@ PATH="$BIN_DIR:$PATH" \
 PKG_CONFIG_PATH="$TARGET_DIR/lib/pkgconfig" ./configure \
   --prefix="$TARGET_DIR" \
   --pkg-config-flags="--static" \
-  --extra-cflags="-I$TARGET_DIR/include -I/Users/kreld/bm -std=c11" \
+  --extra-cflags="-I$TARGET_DIR/include -I$TARGET_DIR/include/bm -std=c11" \
   --extra-ldflags="-L$TARGET_DIR/lib" \
   --bindir="$BIN_DIR" \
   --cc=clang \
@@ -184,7 +184,8 @@ PKG_CONFIG_PATH="$TARGET_DIR/lib/pkgconfig" ./configure \
   --enable-nonfree \
   --disable-ffplay \
   --disable-ffprobe \
-  --disable-ffserver
+  --disable-ffserver \
+  --disable-sdl 
 # Stupid hack to override ffmpeg's too-automatic build process
 sed -i '' 's/CXXFLAGS   += $(CPPFLAGS) $(CFLAGS)/CXXFLAGS   += $(CPPFLAGS) $(CFLAGS) -std=c++03/g' $BUILD_DIR/ffmpeg-3.0/common.mak
 PATH="$BIN_DIR:$PATH" make VERBOSE=1 -j $jval
