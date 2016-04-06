@@ -92,34 +92,17 @@ download \
 	"c5a8cf7c0b066759542bc4ca46817ac6" \
 	"http://downloads.xiph.org/releases/opus"
 
-#download \
-#	"v1.5.0.tar.gz" \
-#	"" \
-#	"0c662bc7525afe281badb3175140d35c" \
-#	"https://github.com/webmproject/libvpx/archive/"
-
 download \
 	"faac-1.28.tar.bz2" \
 	"" \
 	"c5dde68840cefe46532089c9392d1df0" \
 	"http://downloads.sourceforge.net/faac/"
 
-#download \
-#	"master.zip" \
-#	"" \
-#	"" \
-#	"https://github.com/libass/libass/archive/"
-
 download \
 	"ffmpeg-3.0.tar.gz" \
 	"" \
 	"" \
 	"https://github.com/FFmpeg/FFmpeg/releases/download/n3.0"
-
-#cp $ENV_ROOT/DeckLinkAPI.h $BUILD_DIR/FFmpeg-release-2.8/libavdevice/DeckLinkAPI.h
-#cp $ENV_ROOT/DeckLinkAPIVersion.h $BUILD_DIR/FFmpeg-release-2.8/libavdevice/DeckLinkAPIVersion.h
-#cp $ENV_ROOT/DeckLinkAPI.h $TARGET_DIR/include/DeckLinkAPI.h
-#cp $ENV_ROOT/DeckLinkAPIVersion.h $TARGET_DIR/include/DeckLinkAPIVersion.h
 
 echo "*** Building yasm ***"
 cd $BUILD_DIR/yasm*
@@ -156,13 +139,6 @@ echo "*** Building opus ***"
 cd $BUILD_DIR/opus*
 ./configure --prefix=$TARGET_DIR --disable-shared
 make -j $jval
-
-#echo "*** Building libvpx ***"
-#cd $BUILD_DIR/libvpx*
-#PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR --disable-examples --disable-unit-tests
-#PATH="$BIN_DIR:$PATH" make -j $jval
-#make install
-
 
 # FFMpeg
 echo "*** Building FFmpeg ***"
