@@ -4,7 +4,7 @@ FFmpeg w/ decklink
 Static build of `ffmpeg` with h264 and decklink   
 
 
-original from https://github.com/dreaming-device/ffmpeg-decklink   
+original from https://github.com/kreldjarn/ffmpeg-decklink   
 Modified by : kiokahn
 
 
