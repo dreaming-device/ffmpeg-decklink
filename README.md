@@ -5,11 +5,16 @@ Static build of `ffmpeg` with h264 and decklink
 
 
 original from https://github.com/kreldjarn/ffmpeg-decklink   
-Modified by : kiokahn
+Modified by : kiokahn   
+FFmpeg version : 4.1   
+Tested OS : Ubuntu 18.04 LTS    
+Decklink driver & SDK version : 10.11.4    
 
 
 Install decklink driver & software   
 ----------------------------------   
+
+Check 'ReadMe.txt' on the Blackmagic_Desktop_Video_Linux_10.11.4
 
 
 Check driver   
