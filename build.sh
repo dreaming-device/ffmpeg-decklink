@@ -69,9 +69,9 @@ download \
 	"https://download.videolan.org/pub/videolan/x264/snapshots/"
 
 download \
-	"x265_1.7.tar.gz" \
+	"x265_2.9.tar.gz" \
 	"" \
-	"ff31a807ebc868aa59b60706e303102f" \
+	"" \
 	"https://bitbucket.org/multicoreware/x265/downloads/"
 
 download \
@@ -99,10 +99,10 @@ download \
 	"http://downloads.sourceforge.net/faac/"
 
 download \
-	"ffmpeg-3.0.tar.gz" \
+	"n4.1.tar.gz" \
 	"" \
 	"" \
-	"https://github.com/FFmpeg/FFmpeg/releases/download/n3.0"
+	"https://github.com/FFmpeg/FFmpeg/archive/"
 
 echo "*** Building yasm ***"
 cd $BUILD_DIR/yasm*
@@ -112,7 +112,7 @@ make install
 
 echo "*** Building x264 ***"
 cd $BUILD_DIR/x264*
-PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR --enable-static --disable-shared --disable-opencl
+PATH="$BIN_DIR:$PATH" ./configure --prefix=$TARGET_DIR --enable-static --disable-shared --disable-opencl --enable-pic
 PATH="$BIN_DIR:$PATH" make -j $jval
 make install
 
@@ -142,7 +142,7 @@ make -j $jval
 
 # FFMpeg
 echo "*** Building FFmpeg ***"
-cd $BUILD_DIR/ffmpeg*
+cd $BUILD_DIR/FFmpeg*
 PATH="$BIN_DIR:$PATH" \
 PKG_CONFIG_PATH="$TARGET_DIR/lib/pkgconfig" ./configure \
   --prefix="$TARGET_DIR" \
@@ -150,21 +150,16 @@ PKG_CONFIG_PATH="$TARGET_DIR/lib/pkgconfig" ./configure \
   --extra-cflags="-I$TARGET_DIR/include -I$TARGET_DIR/include/bm -std=c11" \
   --extra-ldflags="-L$TARGET_DIR/lib" \
   --bindir="$BIN_DIR" \
-  --cc=clang \
-  --cxx=clang++ \
   --enable-static \
   --enable-decklink \
   --enable-gpl \
   --enable-libfdk-aac \
   --enable-libx264 \
   --enable-nonfree \
-  --disable-ffplay \
-  --disable-ffprobe \
-  --disable-ffserver \
-  --disable-sdl 
+  --extra-cflags="-I/home/mteg_vas/capture/Blackmagic_DeckLink_SDK_10.11.4/Linux/include/" \
+  --extra-ldflags="-L/home/mteg_vas/capture/Blackmagic_DeckLink_SDK_10.11.4/Linux/include/"
 # Stupid hack to override ffmpeg's too-automatic build process
-sed -i '' 's/CXXFLAGS   += $(CPPFLAGS) $(CFLAGS)/CXXFLAGS   += $(CPPFLAGS) $(CFLAGS) -std=c++03/g' $BUILD_DIR/ffmpeg-3.0/common.mak
-PATH="$BIN_DIR:$PATH" make VERBOSE=1 -j $jval
+make -j $jval
 make install -j $jval
 make distclean
 hash -r
