@@ -5,7 +5,7 @@ Static build of `ffmpeg` with h264 and decklink
 
 
 original from https://github.com/dreaming-device/ffmpeg-decklink   
-Modified by : kiokahn$daum.net   
+Modified by : kiokahn
 
 
 Install decklink driver & software   
@@ -24,6 +24,7 @@ Check driver
 
 Install utility   
 ----------------------------------   
+
     $ sudo apt-get install autoreconf
     $ sudo apt-get install libtool
     $ sudo apt-get install git
@@ -54,6 +55,7 @@ Get device and format list
 --------------------------
 
 Get device list :    
+
     $ ./bin/ffmpeg -f decklink -list_devices 1 -i dummy
     ffmpeg version 3a462e6 Copyright (c) 2000-2018 the FFmpeg developers
     built with gcc 7 (Ubuntu 7.3.0-27ubuntu1~18.04)
@@ -71,6 +73,7 @@ Get device list :
    
    
 Get format list :    
+
     $ ./bin/ffmpeg -f decklink -list_formats 1 -i 'DeckLink Mini Recorder 4K'
     ffmpeg version 3a462e6 Copyright (c) 2000-2018 the FFmpeg developers
     built with gcc 7 (Ubuntu 7.3.0-27ubuntu1~18.04)
